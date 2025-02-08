@@ -179,6 +179,12 @@ function deleteMessage(index) {
 // 页面加载时显示留言
 renderMessages();
 
+// 🎨 点击 🐰 画板展开
+document.querySelector(".pixel-art").addEventListener("click", function() {
+    this.classList.toggle("expanded");
+    this.innerHTML = this.classList.contains("expanded") ? '<canvas id="pixelCanvas" width="200" height="200"></canvas>' : "🐰";
+});
+
 // 🎨 4. 画板（像素绘制）
 const canvas = document.getElementById("pixelCanvas");
 const ctx = canvas.getContext("2d");
