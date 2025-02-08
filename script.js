@@ -3,8 +3,8 @@ const quotes = ["小狗今天也最乖！", "Daddy最爱小狗！", "小狗是Da
 document.getElementById("daily-quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
 
 // 🌟 2. 小狗积分系统
-let score = localStorage.getItem("score");  
-score = score ? parseInt(score) : 5;  // 确保 score 不是 null 或 NaN
+let score = localStorage.getItem("score");
+score = score ? parseInt(score) : 5;
 
 function addPoints() {
     score += 5;
@@ -12,7 +12,7 @@ function addPoints() {
 }
 
 function removePoints() {
-    score = Math.max(2, score - 2);  // 避免分数变成负数
+    score = Math.max(2, score - 2);
     updateScore();
 }
 
@@ -60,11 +60,10 @@ function removePoints() {
     document.getElementById("score").textContent = score;
 }
 
-// 任务存储
+// 任务管理系统（添加、删除、完成）
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 const taskList = document.getElementById("task-list");
 
-// 显示任务
 function renderTasks() {
     taskList.innerHTML = "";
     tasks.forEach((task, index) => {
@@ -74,7 +73,6 @@ function renderTasks() {
     });
 }
 
-// 添加任务
 function addTask() {
     let taskInput = document.getElementById("task-input");
     if (taskInput.value.trim() !== "") {
@@ -85,24 +83,20 @@ function addTask() {
     }
 }
 
-// 完成任务（加积分）
 function completeTask(index) {
     tasks.splice(index, 1);
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    score += 5; // 完成任务加5分
-    localStorage.setItem("score", score);
-    document.getElementById("score").textContent = score;
+    score += 5;  // 完成任务加 5 分
+    updateScore();
     renderTasks();
 }
 
-// 删除任务
 function deleteTask(index) {
     tasks.splice(index, 1);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     renderTasks();
 }
 
-// 页面加载时显示任务
 document.addEventListener("DOMContentLoaded", renderTasks);
 
 // 🌟 3. 便签（本地存储）
@@ -124,6 +118,34 @@ function addSticker(sticker) {
 let messages = JSON.parse(localStorage.getItem("messages")) || [];
 const messageList = document.getElementById("message-list");
 
+function renderMessages() {
+    messageList.innerHTML = "";
+    messages.forEach((msg, index) => {
+        let li = document.createElement("li");
+        let sender = msg.startsWith("[Daddy]") ? "❤️" : "🐶";
+        li.innerHTML = `${sender} ${msg} <button onclick="deleteMessage(${index})">❌ 删除</button>`;
+        messageList.appendChild(li);
+    });
+}
+
+function addMessage(sender) {
+    let messageInput = document.getElementById("message-input");
+    if (messageInput.value.trim() !== "") {
+        let formattedMessage = sender === 'daddy' ? `[Daddy] ${messageInput.value}` : `[小狗] ${messageInput.value}`;
+        messages.push(formattedMessage);
+        localStorage.setItem("messages", JSON.stringify(messages));
+        messageInput.value = "";
+        renderMessages();
+    }
+}
+
+function deleteMessage(index) {
+    messages.splice(index, 1);
+    localStorage.setItem("messages", JSON.stringify(messages));
+    renderMessages();
+}
+
+document.addEventListener("DOMContentLoaded", renderMessages);
 // 显示留言
 function renderMessages() {
     messageList.innerHTML = "";
@@ -160,10 +182,12 @@ renderMessages();
 // 🎨 4. 画板（像素绘制）
 const canvas = document.getElementById("pixelCanvas");
 const ctx = canvas.getContext("2d");
+
 canvas.addEventListener("mousedown", function(event) {
     ctx.fillStyle = "black";
     ctx.fillRect(event.offsetX, event.offsetY, 10, 10);
 });
+
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
