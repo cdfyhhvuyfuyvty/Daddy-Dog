@@ -16,6 +16,12 @@
     <!-- 📌 ② 主要功能区（左右排版+上下滑动） -->
     <main>
         <section class="left">
+            <div class="tasks">
+    <h3>📝 小狗任务清单</h3>
+    <ul id="task-list"></ul>
+    <input type="text" id="task-input" placeholder="输入任务...">
+    <button onclick="addTask()">➕ 添加任务</button>
+</div>
             <div class="quote">📜 每日一句：<span id="daily-quote">小狗今天也最乖！</span></div>
             <div class="points">💖 小狗积分：<span id="score">5</span></div>
             <button onclick="addPoints()">完成任务 +5积分</button>
@@ -24,23 +30,40 @@
 
         <section class="right">
             <div class="notepad">
-                <h3>🎮 小狗的便签机</h3>
-                <textarea id="note"></textarea>
-                <button onclick="saveNote()">💾 保存</button>
-            </div>
+    <h3>🎮 小狗的便签机</h3>
+    <div class="note-container">
+        <textarea id="note"></textarea>
+        <div class="stickers">
+            <span onclick="addSticker('🐶')">🐶</span>
+            <span onclick="addSticker('🐾')">🐾</span>
+            <span onclick="addSticker('💖')">💖</span>
+        </div>
+        <button onclick="saveNote()">💾 保存</button>
+    </div>
+</div>
 
             <div class="pixel-art">
-                <h3>🎨 小狗的像素画板</h3>
-                <canvas id="pixelCanvas" width="200" height="200"></canvas>
-                <button onclick="clearCanvas()">🧹 清空</button>
-            </div>
+    <h3 onclick="toggleCanvas()">🎨 小狗的像素画板 🐰</h3>
+    <canvas id="pixelCanvas" width="200" height="200"></canvas>
+    <button onclick="clearCanvas()">🧹 清空</button>
+</div>
         </section>
     </main>
 
+            <div class="chat-box">
+    <h3>💬 Daddy & 小狗留言区</h3>
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="小狗说点什么">
+    <button onclick="sendMessage()">📩 发送</button>
+</div>
+
     <!-- 📌 ③ 休闲区 -->
     <footer>
-        <div class="music-player">🎵 播放BGM</div>
-        <div class="effects">🔘 按钮音效</div>
+        <div class="music-player">
+    <h3>🎵 BGM</h3>
+    <audio id="bgm" src="bgm1.mp3" loop></audio>
+    <button onclick="changeBGM()">🔄 切换BGM</button>
+</div>
     </footer>
 
     <script src="script.js"></script>
