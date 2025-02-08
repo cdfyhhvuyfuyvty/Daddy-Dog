@@ -1,19 +1,24 @@
-// 📜 1. 每日一句（随机切换）
+// 🌟 1. 每日一句（随机切换）
 const quotes = ["小狗今天也最乖！", "Daddy最爱小狗！", "小狗是Daddy的宝贝！"];
 document.getElementById("daily-quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
 
-// 💖 2. 小狗积分系统
-let score = 5;
+// 🌟 2. 小狗积分系统
+let score = localStorage.getItem("score");  
+score = score ? parseInt(score) : 5;  // 确保 score 不是 null 或 NaN
+
 function addPoints() {
     score += 5;
     updateScore();
 }
+
 function removePoints() {
-    score -= 2;
+    score = Math.max(2, score - 2);  // 避免分数变成负数
     updateScore();
 }
+
 function updateScore() {
     document.getElementById("score").innerText = score;
+    localStorage.setItem("score", score);
 }
 
 function completeTask(task, points) {
@@ -100,12 +105,16 @@ function deleteTask(index) {
 // 页面加载时显示任务
 document.addEventListener("DOMContentLoaded", renderTasks);
 
-// 🎮 3. 便签机（本地存储）
+// 🌟 3. 便签（本地存储）
 function saveNote() {
-    let note = document.getElementById("note").value;
-    localStorage.setItem("xiaogou_note", note);
+    let note = document.getElementById("note").value.trim(); // 去掉前后空格
+    if (note !== "") { // 只有非空内容才存储
+        localStorage.setItem("xiaogou_note", note);
+    }
 }
-document.getElementById("note").value = localStorage.getItem("xiaogou_note") || "";
+
+document.getElementById("note").value = localStorage.getItem("xiaogou_note") || ""; // 防止 nullscore;
+}
 
 function addSticker(sticker) {
     document.getElementById("note").value += sticker;
