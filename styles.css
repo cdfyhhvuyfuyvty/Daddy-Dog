@@ -1,0 +1,45 @@
+/* 🌸 整体布局 */
+body {
+    background-color: pink;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    margin: 0;
+}
+
+/* 📌 头部 */
+header {
+    background: #ff8fab;
+    padding: 15px;
+    font-size: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* 📍 左右布局 */
+main {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+}
+
+.left, .right {
+    width: 45%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* 🎮 便签机 */
+.notepad textarea {
+    width: 100%;
+    height: 100px;
+    font-family: 'VT323', monospace;
+}
+
+/* 🎨 画板 */
+canvas {
+    background: #fff;
+    border: 2px solid black;
+}

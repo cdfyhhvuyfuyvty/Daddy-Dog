@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daddy的小狗主页</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 📌 ① 头部（固定悬浮） -->
+    <header>
+        <h1>🎀 Daddy的小狗专属主页 🎀</h1>
+        <button onclick="toggleCalendar()">📅 小狗的日历</button>
+    </header>
+
+    <!-- 📌 ② 主要功能区（左右排版+上下滑动） -->
+    <main>
+        <section class="left">
+            <div class="quote">📜 每日一句：<span id="daily-quote">小狗今天也最乖！</span></div>
+            <div class="points">💖 小狗积分：<span id="score">5</span></div>
+            <button onclick="addPoints()">完成任务 +5积分</button>
+            <button onclick="removePoints()">偷懒 -2积分</button>
+        </section>
+
+        <section class="right">
+            <div class="notepad">
+                <h3>🎮 小狗的便签机</h3>
+                <textarea id="note"></textarea>
+                <button onclick="saveNote()">💾 保存</button>
+            </div>
+
+            <div class="pixel-art">
+                <h3>🎨 小狗的像素画板</h3>
+                <canvas id="pixelCanvas" width="200" height="200"></canvas>
+                <button onclick="clearCanvas()">🧹 清空</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 📌 ③ 休闲区 -->
+    <footer>
+        <div class="music-player">🎵 播放BGM</div>
+        <div class="effects">🔘 按钮音效</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
