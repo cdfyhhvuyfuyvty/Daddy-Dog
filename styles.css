@@ -31,15 +31,54 @@ main {
     border-radius: 10px;
 }
 
-/* 🎮 便签机 */
-.notepad textarea {
-    width: 100%;
-    height: 100px;
-    font-family: 'VT323', monospace;
+/* 🎮 便签机 - 粉色游戏机风格 */
+.notepad {
+    background: url('gameboy.png') no-repeat center;
+    background-size: cover;
+    width: 280px;
+    height: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
 }
 
-/* 🎨 画板 */
-canvas {
+/* 便签输入框 */
+.notepad textarea {
+    width: 80%;
+    height: 60px;
+    font-family: 'VT323', monospace;
     background: #fff;
     border: 2px solid black;
+    padding: 5px;
+    resize: none;
+    display: block;
+    margin: 20px auto;
+}
+
+/* 便签按钮 */
+.notepad button {
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* 🎨 画板默认缩小 */
+.pixel-art {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 50px;
+}
+
+/* 画板展开时 */
+.pixel-art.expanded {
+    width: 220px;
+    height: 220px;
 }
